@@ -1,4 +1,18 @@
-# spacetime-daylight
+<div align="center">
+  <img src="https://cloud.githubusercontent.com/assets/399657/23590290/ede73772-01aa-11e7-8915-181ef21027bc.png" />
+  <div>predicted sunrise/sunset times</div>
+  <a href="https://npmjs.org/package/spacetime-daylight">
+    <img src="https://img.shields.io/npm/v/spacetime-daylight.svg?style=flat-square" />
+  </a>
+  <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
+    <img src="https://img.shields.io/badge/stability-stable-green.svg?style=flat-square" />
+  </a>
+</div>
+
+<div align="center">
+  <code>npm install spacetime-daylight</code>
+</div>
+
 a [spacetime](https://github.com/spencermountain/spacetime) plugin to calculate sunlight exposure for a given timezone/location, in local time.
 
 This project is really just a neat opportunity to combine some exceptional open-source javascript libraries:
