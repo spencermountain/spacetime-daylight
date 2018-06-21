@@ -1,6 +1,6 @@
 const sunCalc = require('./suncalc')
-// const spacetimeGeo = require('spacetime-geo')
-const spacetimeGeo = require('/Users/spencer/mountain/spacetime-geo/src/index.js')
+const spacetimeGeo = require('spacetime-geo')
+// const spacetimeGeo = require('/Users/spencer/mountain/spacetime-geo/src/index.js')
 
 const buildFrom = function(s, time) {
   let d = new Date(time)
