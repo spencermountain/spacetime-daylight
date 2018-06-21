@@ -1,0 +1,31 @@
+{
+  "name": "sunlight",
+  "version": "0.0.1",
+  "description": "calculate approximate sunlight times for a given timezone",
+  "main": "./src/index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "amble ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spencermountain/spacetime-sunlight.git"
+  },
+  "keywords": [
+    "sunlight",
+    "timezone"
+  ],
+  "author": "spencermountain@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spencermountain/spacetime-sunlight/issues"
+  },
+  "homepage": "https://github.com/spencermountain/spacetime-sunlight#readme",
+  "dependencies": {
+    "spacetime": "^4.2.2",
+    "tz-lookup": "^6.1.8"
+  },
+  "devDependencies": {
+    "amble": "0.0.6"
+  }
+}
