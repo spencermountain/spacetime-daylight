@@ -1,7 +1,7 @@
 let test = require('tape')
 const spacetime = require('spacetime')
 const daylight = require('../src')
-// const geo = require('../builds/spacetime-geo')
+// const daylight = require('../builds/spacetime-daylight')
 spacetime.extend(daylight)
 
 test('southern-hemisphere-opposite', function(t) {
