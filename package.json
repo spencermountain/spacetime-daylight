@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/spencermountain/spacetime-sunlight#readme",
   "dependencies": {
-    "spacetime-geo": "^1.0.1"
+    "spacetime-geo": "^1.1.0",
+    "suncalc": "^1.8.0"
   },
   "devDependencies": {
     "amble": "0.0.6",

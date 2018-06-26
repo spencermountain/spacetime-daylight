@@ -34,10 +34,66 @@ let d = spacetime('June 5th 3:30pm', 'Canada/Eastern')
 d.sunrise().time()
 // 6:43am
 d.sunset().time()
-// //7:13pm
+// 7:13pm
+d.noon().time()
+// 1:17pm
 ```
 
 `132kb` or so,
+### API
+```js
+d.sunrise()
+
+d.sunset()
+
+d.noon()
+
+d.dusk()
+
+d.dawn()
+
+//this one does some helper diff logic
+d.daylight()
+/*{
+  dawn: '5:02am',
+  sunrise: '5:38am',
+  sunset: '9:04pm',
+  dusk: '9:40pm',
+  duration:
+   { inHours: 16,
+     inMinutes: 926,
+     inSeconds: 55540,
+     human: { hours: 15, minutes: 25, seconds: 40 } },
+  current: { progress: 0.49936982355059417, status: 'day' }
+}*/
+```
+
+### Examples:
+find out the rate the length-of-day is changing
+```js
+let s = spacetime('November 12 2018', 'Europe/London')
+let today = s.daylight().inSeconds
+let tomorrow = s.add(1, 'day').daylight().inSeconds
+let diff = today - tomorrow
+console.log(`today is ${diff / 60} minutes longer`)
+// 'today is 3.2 minutes longer'
+```
+
+find-out where the sun is rising now:
+```js
+let maybeList = spacetime.whereIts('4:00am', '9:30am')
+maybeList.forEach((tz) => {
+  let d = spacetime.now(tz)
+  if (d.isBetween(d.dawn(), d.sunrise())) {
+    //calculate how minutes until sunrise
+    let diff = d.diff(d.sunrise())
+    console.log(tz + ' in ' + diff.minutes + ' mins - @ ' + d.sunrise().time())
+  }
+})
+// Asia/Kamchatka in 25 mins - @ 6:01am
+// Asia/Magadan in 4 mins - @ 4:40am
+// Pacific/Midway in 19 mins - @ 5:55am
+```
 
 ## See also
 * [timespace](https://github.com/mapbox/timespace) - by MapBox, using Moment - larger and more-accurate.

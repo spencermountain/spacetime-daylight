@@ -5,12 +5,16 @@ const sunlight = require('./src/index')
 // console.log(tzlookup(50.4050, -31.8971)); // atlantic ocean
 
 spacetime.extend(sunlight)
-let s = spacetime('June 21 2018')
-// s.month('june')
-// s.log()
-// s = s.in(48.7235, 1.9931)
-// s.log()
-// console.log(s.timezone())
-console.log(s.daylight(42.7235, -73.6931))
-console.log('')
-console.log(s.daylight(0, 0))
+
+// console.log(spacetime('June 26 2018', 'Canada/Eastern').time('1:21pm').daylight())
+// console.log(spacetime('June 26 2018', 'Canada/Eastern').noon().time())
+
+let maybeList = spacetime.whereIts('4:00am', '9:30am')
+maybeList.forEach((tz) => {
+  let d = spacetime.now(tz)
+  if (d.isBetween(d.dawn(), d.sunrise())) {
+    //calculate how minutes until sunrise
+    let diff = d.diff(d.sunrise())
+    console.log(tz + ' in ' + diff.minutes + ' mins - @ ' + d.sunrise().time())
+  }
+})

@@ -1,8 +1,7 @@
-const sunCalc = require('./suncalc')
+const sunCalc = require('suncalc')
 const spacetimeGeo = require('spacetime-geo')
-// const spacetimeGeo = require('/Users/spencer/mountain/spacetime-geo/src/index.js')
 
-const buildFrom = function(s, time) {
+const setFrom = function(s, time) {
   let d = new Date(time)
   // console.log(time)
   s = s.clone()
@@ -10,21 +9,38 @@ const buildFrom = function(s, time) {
   return s
 }
 
+const calculatePoint = function(s, lat, lng, field) {
+  if (lat === undefined || lng === undefined) {
+    let guess = s.point()
+    lat = guess.lat
+    lng = guess.lng
+  }
+  s = s.in(lat, lng)
+  let d = new Date(s.epoch)
+  let res = sunCalc.getTimes(d, lat, lng)
+  return setFrom(s, res[field])
+}
+
 module.exports = {
   //depend on this plugin
   in: spacetimeGeo.in,
+  point: spacetimeGeo.point,
+
   //create ours
   sunrise: function(lat, lng) {
-    let s = this.in(lat, lng)
-    let d = new Date(s.epoch)
-    let res = sunCalc.getTimes(d, lat, lng)
-    return buildFrom(s, res.sunrise)
+    return calculatePoint(this, lat, lng, 'sunrise')
   },
   sunset: function(lat, lng) {
-    let s = this.in(lat, lng)
-    let d = new Date(s.epoch)
-    let res = sunCalc.getTimes(d, lat, lng)
-    return buildFrom(s, res.sunset)
+    return calculatePoint(this, lat, lng, 'sunset')
+  },
+  noon: function(lat, lng) {
+    return calculatePoint(this, lat, lng, 'solarNoon')
+  },
+  dawn: function(lat, lng) {
+    return calculatePoint(this, lat, lng, 'dawn')
+  },
+  dusk: function(lat, lng) {
+    return calculatePoint(this, lat, lng, 'dusk')
   },
   daylight: function(lat, lng) {
     let sunrise = this.sunrise(lat, lng)
@@ -36,10 +52,47 @@ module.exports = {
       minutes: delta.diff.minutes,
       seconds: delta.diff.seconds,
     }
+    let diff = sunrise.diff(sunset)
+    diff.seconds = parseInt((sunset.epoch - sunrise.epoch) / 1000, 10)
+
+    let now = sunrise.diff(this)
+    now.seconds = parseInt((this.epoch - sunrise.epoch) / 1000, 10)
+
+    let progress = now.seconds / diff.seconds
+    let status = 'day'
+    let dawn = this.dawn()
+    let dusk = this.dusk()
+    if (progress < 0) {
+      progress = 0
+      if (this.epoch > dawn.epoch) {
+        status = 'dawn'
+      } else {
+        status = 'night'
+      }
+    } else if (progress > 1) {
+      progress = 0
+      if (this.epoch < dusk.epoch) {
+        status = 'dusk'
+      } else {
+        status = 'night'
+      }
+    }
+
     return {
+      dawn: dawn.time(),
       sunrise: sunrise.time(),
       sunset: sunset.time(),
-      duration: duration
+      dusk: dusk.time(),
+      duration: {
+        inHours: diff.hours,
+        inMinutes: diff.minutes,
+        inSeconds: diff.seconds,
+        human: duration,
+      },
+      current: {
+        progress: progress,
+        status: status
+      }
     }
   }
 }
