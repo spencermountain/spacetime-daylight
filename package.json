@@ -23,19 +23,19 @@
   },
   "homepage": "https://github.com/spencermountain/spacetime-sunlight#readme",
   "dependencies": {
-    "spacetime-geo": "^1.1.0",
+    "spacetime-geo": "1.2.0",
     "suncalc": "^1.8.0"
   },
   "devDependencies": {
-    "amble": "0.0.6",
+    "amble": "1.0.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "babelify": "^8.0.0",
-    "browserify": "^16.2.2",
-    "derequire": "^2.0.6",
-    "shelljs": "^0.8.2",
-    "spacetime": "^4.2.2",
-    "tap-dancer": "0.0.3",
-    "tape": "^4.9.1"
+    "babelify": "10.0.0",
+    "browserify": "16.5.1",
+    "derequire": "2.1.1",
+    "shelljs": "0.8.4",
+    "spacetime": "6.6.1",
+    "tap-dancer": "0.2.0",
+    "tape": "5.0.1"
   }
 }

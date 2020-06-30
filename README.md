@@ -17,14 +17,15 @@ a [spacetime](https://github.com/spencermountain/spacetime) plugin to calculate 
 
 This project is really just a neat opportunity to combine some exceptional open-source javascript libraries:
 
-* [sun-calc](https://github.com/mourner/suncalc) by Vladimir Agafonkin
-* [tz-lookup](https://github.com/darkskyapp/tz-lookup/) by dark-sky and Evan Siroky
+- [sun-calc](https://github.com/mourner/suncalc) by Vladimir Agafonkin
+- [tz-lookup](https://github.com/darkskyapp/tz-lookup/) by dark-sky and Evan Siroky
 
 that's all it does.
 
 it bundles-in the [spacetime-geo](https://github.com/spencermountain/spacetime-geo) plugin, too.
 
-Work-in-Progress!
+### sunrise/sunset
+
 ```js
 const spacetime = require('spacetime')
 const daylight = require('spacetime-daylight')
@@ -39,8 +40,29 @@ d.noon().time()
 // 1:17pm
 ```
 
+### solar position
+
+find the position of the sun, at a place and time:
+
+```js
+let s = spacetime.today('Europe/Stockholm').time('3:00am')
+let hours = s.every('hour', s.time('11:00pm'))
+hours.forEach((d) => {
+  console.log(d.time(), d.sunPosition())
+})
+```
+
+**Altitude** means _how high_ the sun is.
+90° is directly overhead, 0° means it's setting, or rising. negative numbers means it's dark.
+
+**Azimuth** describes how far it is _east-to-west_
+0° is North. Negative numbers are east (morning).
+Noon should have the same azimuth as midnight.
+
 `132kb` or so,
+
 ### API
+
 ```js
 d.sunrise()
 
@@ -69,7 +91,9 @@ d.daylight()
 ```
 
 ### Examples:
+
 find out the rate the length-of-day is changing
+
 ```js
 let s = spacetime('November 12 2018', 'Europe/London')
 let today = s.daylight().inSeconds
@@ -80,6 +104,7 @@ console.log(`today is ${diff / 60} minutes longer`)
 ```
 
 find-out where the sun is rising now:
+
 ```js
 let maybeList = spacetime.whereIts('4:00am', '9:30am')
 maybeList.forEach((tz) => {
@@ -96,6 +121,7 @@ maybeList.forEach((tz) => {
 ```
 
 ## See also
-* [timespace](https://github.com/mapbox/timespace) - by MapBox, using Moment - larger and more-accurate.
+
+- [timespace](https://github.com/mapbox/timespace) - by MapBox, using Moment - larger and more-accurate.
 
 MIT

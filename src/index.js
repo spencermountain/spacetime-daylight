@@ -1,7 +1,9 @@
 const sunCalc = require('suncalc')
 const spacetimeGeo = require('spacetime-geo')
+const sunPosition = require('./sunPosition')
+const { solstice, equinox } = require('./solstices')
 
-const setFrom = function(s, time) {
+const setFrom = function (s, time) {
   let d = new Date(time)
   // console.log(time)
   s = s.clone()
@@ -9,7 +11,7 @@ const setFrom = function(s, time) {
   return s
 }
 
-const calculatePoint = function(s, lat, lng, field) {
+const calculatePoint = function (s, lat, lng, field) {
   if (lat === undefined || lng === undefined) {
     let guess = s.point()
     lat = guess.lat
@@ -26,23 +28,34 @@ module.exports = {
   in: spacetimeGeo.in,
   point: spacetimeGeo.point,
 
-  //create ours
-  sunrise: function(lat, lng) {
+  solstice: function () {
+    return solstice(this)
+  },
+  winterSolstice: function () {
+    return solstice(this).winter
+  },
+  summerSolstice: function () {
+    return solstice(this).summer
+  },
+  sunPosition: function (lat, lng) {
+    return sunPosition(this, lat, lng)
+  },
+  sunrise: function (lat, lng) {
     return calculatePoint(this, lat, lng, 'sunrise')
   },
-  sunset: function(lat, lng) {
+  sunset: function (lat, lng) {
     return calculatePoint(this, lat, lng, 'sunset')
   },
-  noon: function(lat, lng) {
+  noon: function (lat, lng) {
     return calculatePoint(this, lat, lng, 'solarNoon')
   },
-  dawn: function(lat, lng) {
+  dawn: function (lat, lng) {
     return calculatePoint(this, lat, lng, 'dawn')
   },
-  dusk: function(lat, lng) {
+  dusk: function (lat, lng) {
     return calculatePoint(this, lat, lng, 'dusk')
   },
-  daylight: function(lat, lng) {
+  daylight: function (lat, lng) {
     let sunrise = this.sunrise(lat, lng)
     let sunset = this.sunset(lat, lng)
     let delta = sunset.since(sunrise)
@@ -91,8 +104,8 @@ module.exports = {
       },
       current: {
         progress: progress,
-        status: status
-      }
+        status: status,
+      },
     }
-  }
+  },
 }
