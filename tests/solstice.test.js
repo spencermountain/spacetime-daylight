@@ -49,3 +49,24 @@ test('winter solstices', function (t) {
   })
   t.end()
 })
+
+let summers = [
+  // [2007, 'Jun 21 2007 2:06pm'],
+  // [1988, 'Jun 20 1988 11:56pm'],
+  // [1999, 'Jun 21 1999 3:49pm'],
+  // [1995, 'Jun 21 1995 4:34pm'],
+  [2019, 'Jun 21 2019 11:54am'],
+  [2015, 'Jun 21 2015 12:37pm'],
+  [2021, 'Jun 20 2021 11:32pm'],
+  // [2024, 'Jun 20 2024 4:50pm'],
+]
+test('summer solstices', function (t) {
+  summers.forEach((a) => {
+    let s = spacetime('march 2 ' + String(a[0]))
+    let have = s.summerSolstice()
+    let want = spacetime(a[1])
+    // console.log(have.diff(want, 'minute'))
+    t.ok(have.isSame(want, 'hour'), a[1])
+  })
+  t.end()
+})

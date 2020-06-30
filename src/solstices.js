@@ -1,7 +1,11 @@
 // the average time between solstices, on timeanddate.com
 // approx 88 days, 23 hours, 30 mins
 const oneYear = 31557060000
-const halfYear = oneYear / 2
+
+// const halfYear = oneYear / 2
+// strangely, this does not seem to be exactly half.
+const halfYear = 15855660000
+// console.log(halfYear + 'ghalf')
 
 // the 2015 winter solstice
 const oneWinter = 1450759620000

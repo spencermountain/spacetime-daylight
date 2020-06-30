@@ -18,7 +18,11 @@ spacetime.extend(sunlight)
 // let s = spacetime('2007')
 // console.log(s.summerSolstice().format('{nice} {year}'))
 
-let s = spacetime('march 2 1998')
-s.every('year', spacetime('july 2 2025')).forEach((d) => {
-  console.log(d.solstice().summer.format('{year} {nice}'))
-})
+// let s = spacetime('march 2 1998')
+// s.every('year', spacetime('july 2 2025')).forEach((d) => {
+//   console.log(d.solstice().summer.format('{year} {nice}'))
+// })
+
+let winter = spacetime('dec 21st 2021 10:53am')
+let summer = spacetime('Jun 20 2021 11:32pm')
+console.log(winter.epoch - summer.epoch)
