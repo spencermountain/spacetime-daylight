@@ -40,6 +40,8 @@ d.noon().time()
 // 1:17pm
 ```
 
+`132kb` or so,
+
 ### solar position
 
 find the position of the sun, at a place and time:
@@ -59,7 +61,16 @@ hours.forEach((d) => {
 0° is North. Negative numbers are east (morning).
 Noon should have the same azimuth as midnight.
 
-`132kb` or so,
+### solstice calculator
+
+some rough millisecond-math for estimating solstice dates for a given year:
+
+```js
+let s = spacetime('march 3rd 2007')
+console.log(s.summerSolstice().format('nice'))
+```
+
+(this is not recommended for advanced astronomy, or distant years)
 
 ### API
 

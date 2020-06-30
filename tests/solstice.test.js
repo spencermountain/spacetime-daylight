@@ -1,8 +1,8 @@
 let test = require('tape')
 const spacetime = require('spacetime')
 const daylight = require('../src')
-// const daylight = require('../builds/spacetime-daylight')
 spacetime.extend(daylight)
+
 let winters = [
   // these are from timeanddate.com
   // [1971, 'Dec 22 1971 7:23am'],

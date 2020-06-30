@@ -14,10 +14,11 @@ spacetime.extend(sunlight)
 //   console.log(d.time() + '   -   ' + d.sunPosition().altitude)
 // })
 
-let s = spacetime('2007')
-console.log(s.solstice().winter.format('{nice} {year}'))
+// 	Jun 21 2007 2:06pm
+// let s = spacetime('2007')
+// console.log(s.summerSolstice().format('{nice} {year}'))
 
-// let s = spacetime('march 2 1998')
-// s.every('year', spacetime('july 2 2025')).forEach((d) => {
-//   console.log(d.solstice().winter.format('{year} {nice}'))
-// })
+let s = spacetime('march 2 1998')
+s.every('year', spacetime('july 2 2025')).forEach((d) => {
+  console.log(d.solstice().summer.format('{year} {nice}'))
+})

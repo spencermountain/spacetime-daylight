@@ -1,6 +1,7 @@
 // the average time between solstices, on timeanddate.com
 // approx 88 days, 23 hours, 30 mins
 const oneYear = 31557060000
+const halfYear = oneYear / 2
 
 // the 2015 winter solstice
 const oneWinter = 1450759620000
@@ -36,10 +37,10 @@ const solstice = function (s) {
   if (winter.year() > s.year()) {
     winter = winter.set(winter.epoch - oneYear)
   }
-  // winter = winter.year(s.year())
+  let summer = winter.set(winter.epoch - halfYear)
   return {
-    summer: winter.set(winter.epoch - oneYear / 2),
     winter: winter,
+    summer: summer,
   }
 }
 const equinox = function (s) {
