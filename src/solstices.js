@@ -2,14 +2,12 @@
 // approx 88 days, 23 hours, 30 mins
 const oneYear = 31557060000
 
-// const halfYear = oneYear / 2
-// strangely, this does not seem to be exactly half.
 const halfYear = 15855660000
-// console.log(halfYear + 'ghalf')
+// strangely, this does not seem to be exactly half.
+// const halfYear = oneYear / 2
 
 // the 2015 winter solstice
 const oneWinter = 1450759620000
-// const oneSummer = 1450759620000 + diff
 
 const goForward = function (epoch) {
   let num = oneWinter + oneYear
