@@ -1,4 +1,5 @@
 const sunCalc = require('suncalc')
+const spacetimeGeo = require('spacetime-geo')
 
 function toDegree(radians) {
   var pi = Math.PI
@@ -11,6 +12,7 @@ const sunPosition = function (s, lat, lng) {
     lat = guess.lat
     lng = guess.lng
   }
+  s.in = s.in || spacetimeGeo.in //bolt-on the plugin
   s = s.in(lat, lng)
   let d = new Date(s.epoch)
   let res = sunCalc.getPosition(d, lat, lng)

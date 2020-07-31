@@ -17,6 +17,7 @@ const calculatePoint = function (s, lat, lng, field) {
     lat = guess.lat
     lng = guess.lng
   }
+  s.in = s.in || spacetimeGeo.in //bolt-on the plugin
   s = s.in(lat, lng)
   let d = new Date(s.epoch)
   let res = sunCalc.getTimes(d, lat, lng)

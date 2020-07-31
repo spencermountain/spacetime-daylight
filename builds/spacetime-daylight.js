@@ -1,4 +1,4 @@
-/* spencermountain/spacetime-daylight 1.3.0 MIT */
+/* spencermountain/spacetime-daylight 1.3.1 MIT */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -1568,6 +1568,8 @@
 	    lng = guess.lng;
 	  }
 
+	  s["in"] = s["in"] || spacetimeGeo["in"]; //bolt-on the plugin
+
 	  s = s["in"](lat, lng);
 	  var d = new Date(s.epoch);
 	  var res = suncalc.getPosition(d, lat, lng); // return res
@@ -1661,6 +1663,8 @@
 	    lat = guess.lat;
 	    lng = guess.lng;
 	  }
+
+	  s["in"] = s["in"] || spacetimeGeo["in"]; //bolt-on the plugin
 
 	  s = s["in"](lat, lng);
 	  var d = new Date(s.epoch);

@@ -1,4 +1,4 @@
-/* spencermountain/spacetime-daylight 1.3.0 MIT */
+/* spencermountain/spacetime-daylight 1.3.1 MIT */
 function commonjsRequire () {
 	throw new Error('Dynamic requires are not currently supported by rollup-plugin-commonjs');
 }
@@ -1562,6 +1562,8 @@ var sunPosition = function sunPosition(s, lat, lng) {
     lng = guess.lng;
   }
 
+  s["in"] = s["in"] || spacetimeGeo["in"]; //bolt-on the plugin
+
   s = s["in"](lat, lng);
   var d = new Date(s.epoch);
   var res = suncalc.getPosition(d, lat, lng); // return res
@@ -1655,6 +1657,8 @@ var calculatePoint = function calculatePoint(s, lat, lng, field) {
     lat = guess.lat;
     lng = guess.lng;
   }
+
+  s["in"] = s["in"] || spacetimeGeo["in"]; //bolt-on the plugin
 
   s = s["in"](lat, lng);
   var d = new Date(s.epoch);
