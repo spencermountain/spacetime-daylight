@@ -1,7 +1,7 @@
 const sunCalc = require('suncalc')
 const spacetimeGeo = require('spacetime-geo')
 const sunPosition = require('./sunPosition')
-const { solstice, equinox } = require('./solstices')
+const { solstice } = require('./solstices') //equinox
 
 const setFrom = function (s, time) {
   let d = new Date(time)

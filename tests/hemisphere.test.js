@@ -4,7 +4,7 @@ const daylight = require('../src')
 // const daylight = require('../builds/spacetime-daylight')
 spacetime.extend(daylight)
 
-test('southern-hemisphere-opposite', function(t) {
+test('southern-hemisphere-opposite', function (t) {
   let s = spacetime('December 16 2018', 'Australia/Canberra')
   t.equal(s.daylight().duration.human.hours, 14, 'long-days in Australia')
 

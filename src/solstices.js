@@ -45,10 +45,10 @@ const solstice = function (s) {
     summer: summer,
   }
 }
-const equinox = function (s) {
-  return {
-    summer: null,
-    winter: null,
-  }
-}
-module.exports = { solstice: solstice, equinox: equinox }
+// const equinox = function (s) {
+//   return {
+//     summer: null,
+//     winter: null,
+//   }
+// }
+module.exports = { solstice: solstice }

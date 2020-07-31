@@ -4,7 +4,7 @@ const daylight = require('../src')
 // const daylight = require('../builds/spacetime-daylight')
 spacetime.extend(daylight)
 
-test('day-status-summer', function(t) {
+test('day-status-summer', function (t) {
   let s = spacetime('June 26 2018', 'Canada/Eastern')
   let o = {}
   o = s.time('3:30am').daylight()
@@ -23,7 +23,7 @@ test('day-status-summer', function(t) {
   t.end()
 })
 
-test('day-status-winter', function(t) {
+test('day-status-winter', function (t) {
   let s = spacetime('November 26 2018', 'Canada/Eastern')
   let o = {}
   o = s.time('3:30am').daylight()

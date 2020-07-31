@@ -4,7 +4,7 @@ const daylight = require('../src')
 // const daylight = require('../builds/spacetime-daylight')
 spacetime.extend(daylight)
 
-test('day-length-winter', function(t) {
+test('day-length-winter', function (t) {
   let s = spacetime('December 16 2018')
   let newYork = s.daylight(42.7235, -73.6931)
   t.equal(newYork.duration.human.hours, 9, 'short-days in NY')
@@ -13,7 +13,7 @@ test('day-length-winter', function(t) {
   t.end()
 })
 
-test('day-length-summer', function(t) {
+test('day-length-summer', function (t) {
   let s = spacetime('June 21 2018')
   let newYork = s.daylight(42.7235, -73.6931)
   t.equal(newYork.duration.human.hours, 15, 'long-days in NY')
@@ -22,7 +22,7 @@ test('day-length-summer', function(t) {
   t.end()
 })
 
-test('using-point()-winter', function(t) {
+test('using-point()-winter', function (t) {
   let s = spacetime('December 16 2018', 'Canada/Eastern')
   let newYork = s.daylight()
   t.equal(newYork.duration.human.hours, 8, 'short-days in Toronto')
@@ -32,7 +32,7 @@ test('using-point()-winter', function(t) {
   t.end()
 })
 
-test('using-point()-summer', function(t) {
+test('using-point()-summer', function (t) {
   let s = spacetime('June 21 2018', 'Canada/Eastern')
   let newYork = s.daylight()
   t.equal(newYork.duration.human.hours, 15, 'long-days in Toronto')
